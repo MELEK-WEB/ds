@@ -5,20 +5,31 @@ import { Link } from "react-router-dom";
 
 export default function ListRec() {
   const [RecList, setRecList] = useState([]);
-  
+  const [filteredRecList, setFilteredRecList] = useState([]);
+
   useEffect(() => {
     fetchRecipes().then((data) => {
       setRecList(data);
+      setFilteredRecList(data);
     });
   }, []);
 
+
+  const handleFilter = (titleFilter, selectedCategory) => {
+    const filteredList = RecList.filter((rec) =>
+      rec.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
+      (selectedCategory === '' || rec.category === selectedCategory)
+    );
+    setFilteredRecList(filteredList);
+  };
+
   return (
     <div>
-            <Filter />
+            <Filter  onFilter={handleFilter}  />
 
       <h1>1ère page</h1>
 
-      {RecList.map((Rec) => {
+      {filteredRecList.map((Rec) => {
         return <RecipeCard key={Rec?.id} recipe={Rec} />;
       })}
 
