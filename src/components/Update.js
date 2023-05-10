@@ -7,11 +7,12 @@ export default function Update() {
   const [Recipe, setRecipe] = useState(null);
   useEffect(() => {
     fetchRecipeById(id).then((d) => {
+        getNameswithrecip(d)
       setRecipe(d);
     });
   }, []);
 
-  function getNameswithrecip(ingredients, recip) {
+  function getNameswithrecip( recip) {
     fetchIngredients().then((r) => {
 
       console.log("r", r);
@@ -24,7 +25,7 @@ export default function Update() {
         });
 
       })
-        console.log("recip",recip)
+      setRecipe(recip);
 
     });
   }
@@ -43,12 +44,18 @@ export default function Update() {
             <>
               <li>
                 {" "}
-                <input type="text" value={ing?.quantity} /> <label></label>{" "}
+                <input type="text" value={ing?.quantity} /> <label>{ing?.name}</label>{" "}
               </li>
             </>
           );
         })}
       </ul>
+
+     Nouvell ingredients <select >
+        <option>
+            Hello
+        </option>
+      </select>
     </div>
   );
 }
