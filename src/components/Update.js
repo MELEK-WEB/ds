@@ -18,7 +18,7 @@ export default function Update() {
       console.log("r", r);
       
      r.map((ing)=>{
-        recip.ingredients.map((recping,index)=>{
+        recip?.ingredients?.map((recping,index)=>{
             if(recping.id===ing.id) {
                 recip.ingredients[index].name=ing.name ;
             }
@@ -39,7 +39,7 @@ export default function Update() {
       <h6>Title : {Recipe?.title}</h6>
       <h6>Category : {Recipe?.category} </h6>
       <ul>
-        {Recipe?.ingredients.map((ing) => {
+        {Recipe?.ingredients?.map((ing) => {
           return (
             <>
               <li>
