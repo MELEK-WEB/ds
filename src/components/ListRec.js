@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
-import { fetchRecipes } from "../recipes.service";
+import { fetchIngredients, fetchRecipes } from "../recipes.service";
 import { Link } from "react-router-dom";
 
 export default function ListRec() {
   const [RecList, setRecList] = useState([]);
 
+
+
   useEffect(() => {
      fetchRecipes().then((data)=>{
         setRecList(data)
      });
+   
   }, []);
 
 
