@@ -1,9 +1,10 @@
 import './App.css';
+import ListRec from './components/ListRec';
 
 function App() {
   return (
-    <div className="App">
-        Hello
+    <div >
+      <ListRec/>
     </div>
   );
 }

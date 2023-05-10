@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Update from './components/Update';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-            <Route  path='/hello' element={<App/>}/>
+      <Routes> 
+            <Route  path='/' element={<App/>}/>
+            <Route path="/update/:id" element={<Update/>} />
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
