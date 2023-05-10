@@ -5,6 +5,7 @@ import { fetchIngredients, fetchRecipeById } from "../recipes.service";
 export default function Update() {
   const { id } = useParams();
   const [Recipe, setRecipe] = useState(null);
+  const [NouvIngreList, setNouvIngreList] = useState([])
   useEffect(() => {
     fetchRecipeById(id).then((d) => {
         getNameswithrecip(d)
@@ -13,10 +14,20 @@ export default function Update() {
   }, []);
 
   function getNameswithrecip( recip) {
+
+    
     fetchIngredients().then((r) => {
 
       console.log("r", r);
       
+
+      const filteredIngredients = r.filter(
+        (ing) => !recip.ingredients.some((recping) => recping.id === ing.id)
+      );
+      console.log("filteredIngredients", filteredIngredients);
+      setNouvIngreList(filteredIngredients);
+
+
      r.map((ing)=>{
         recip?.ingredients?.map((recping,index)=>{
             if(recping.id===ing.id) {
@@ -50,12 +61,15 @@ export default function Update() {
           );
         })}
       </ul>
-
-     Nouvell ingredients <select >
-        <option>
-            Hello
+Noubll ingredients : 
+  <select>
+      {NouvIngreList.map((ingredient) => (
+        <option key={ingredient.id} value={ingredient.id}>
+          {ingredient.name}
         </option>
-      </select>
+      ))}
+    </select>
+    <button>Add</button>
     </div>
   );
 }
