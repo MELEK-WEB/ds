@@ -14,13 +14,15 @@ export default function ListRec() {
 
   return (
     <div>
+            <Filter />
+
       <h1>1ère page</h1>
 
       {RecList.map((Rec) => {
         return <RecipeCard key={Rec?.id} recipe={Rec} />;
       })}
 
-      <Filter />
+  
     </div>
   );
 }
